@@ -1,0 +1,32 @@
+generated: '2026-07-20'
+method: searched
+status: published
+source: https://matchory.com/en/mcp
+server:
+  name: matchory
+  transport: http
+  url: https://discovery.matchory.com/mcp
+  description: >-
+    First-party, remote Model Context Protocol server exposing Matchory's
+    resolved-and-enriched supplier intelligence layer (verified supplier
+    profiles, MatchoryID identity resolution, risk signals, portfolio analysis)
+    to MCP-compatible AI agents such as Claude and Microsoft Copilot. Answers are
+    source-traceable via MatchoryID and carry confidence scores.
+auth:
+  type: oauth2
+  scheme: OAuth 2.0 (RFC 9728 protected resource)
+  required_scope: mcp:use
+  authorization_server: https://discovery.matchory.com
+  protected_resource_metadata: https://discovery.matchory.com/.well-known/oauth-protected-resource
+  note: >-
+    POST initialize to the endpoint returns HTTP 401 without a bearer token; the
+    protected-resource metadata advertises resource https://discovery.matchory.com
+    and required scope mcp:use. Dynamic client registration is supported at
+    https://discovery.matchory.com/auth/oauth/register.
+verification:
+  endpoint_probe: POST https://discovery.matchory.com/mcp -> 401 (auth required)
+  probed: '2026-07-20'
+tools: []
+tools_note: >-
+  The tool list could not be enumerated because the MCP endpoint requires an
+  OAuth access token (scope mcp:use). Not fabricated.

@@ -1,0 +1,23 @@
+generated: '2026-07-20'
+method: searched
+source: https://discovery.matchory.com/.well-known/
+host: https://discovery.matchory.com
+documents:
+- path: /.well-known/openid-configuration
+  status: 200
+  file: matchory-openid-configuration.json
+  note: OpenID Connect discovery (issuer https://matchory.com)
+- path: /.well-known/oauth-authorization-server
+  status: 200
+  file: matchory-oauth-authorization-server.json
+  note: RFC 8414 OAuth 2.0 Authorization Server Metadata
+- path: /.well-known/oauth-protected-resource
+  status: 200
+  file: matchory-oauth-protected-resource.json
+  note: RFC 9728 OAuth 2.0 Protected Resource Metadata for the MCP server (scope mcp:use)
+- path: /.well-known/jwks.json
+  status: 200
+  note: JSON Web Key Set (not saved verbatim)
+- path: /.well-known/security.txt
+  status: 302
+  note: redirects to the SPA; no RFC 9116 security.txt published

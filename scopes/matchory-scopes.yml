@@ -1,0 +1,32 @@
+generated: '2026-07-20'
+method: searched
+source: https://discovery.matchory.com/.well-known/openid-configuration
+schemes:
+- name: OAuth2
+  source: well-known/matchory-openid-configuration.json
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://discovery.matchory.com/auth/oauth/authorize
+    tokenUrl: https://discovery.matchory.com/auth/oauth/token
+  - flow: clientCredentials
+    tokenUrl: https://discovery.matchory.com/auth/oauth/token
+scopes:
+- scope: openid
+  description: OpenID Connect authentication; issue an ID token for the subject.
+  flows: [authorizationCode]
+  sources: [well-known/matchory-openid-configuration.json]
+- scope: profile
+  description: Access the end-user's basic profile claims (name, given_name, family_name, picture, locale).
+  flows: [authorizationCode]
+  sources: [well-known/matchory-openid-configuration.json]
+- scope: email
+  description: Access the end-user's email and email_verified claims.
+  flows: [authorizationCode]
+  sources: [well-known/matchory-openid-configuration.json]
+- scope: mcp:use
+  description: >-
+    Authorize a client to call Matchory's OAuth-protected MCP server at
+    https://discovery.matchory.com/mcp (advertised as the required scope in the
+    RFC 9728 protected-resource metadata).
+  flows: [authorizationCode, clientCredentials]
+  sources: [well-known/matchory-oauth-protected-resource.json, well-known/matchory-openid-configuration.json]

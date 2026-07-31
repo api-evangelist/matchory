@@ -1,0 +1,24 @@
+generated: '2026-07-20'
+method: searched
+type: Webhooks
+source: https://matchory.com/en/technology
+status: advertised
+summary: >-
+  Matchory advertises webhook events on its supplier data platform so that
+  downstream systems and agents are notified when the resolved/enriched supplier
+  portfolio changes. Delivered alongside the REST/GraphQL API and role-scoped API
+  keys. No public AsyncAPI document or per-event payload catalog is published (the
+  developer reference is behind authentication), so only the advertised event
+  family is captured here — nothing is fabricated.
+events:
+- name: portfolio.changed
+  description: >-
+    Emitted when supplier portfolio data changes — e.g. records are resolved to a
+    MatchoryID, enrichment/risk signals are updated, or a supplier is added or
+    consolidated. (Event name is descriptive of the documented "webhook events for
+    portfolio changes"; exact channel name not published.)
+  source: https://matchory.com/en/technology
+notes:
+- No AsyncAPI spec published; this is a webhook-surface capture only.
+- Concrete channel names, payload schemas, and delivery/signing details require an
+  authenticated developer account and were not available to probe.

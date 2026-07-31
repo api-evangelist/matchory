@@ -1,0 +1,47 @@
+generated: '2026-07-20'
+method: searched
+source: https://discovery.matchory.com/.well-known/openid-configuration
+docs: https://matchory.com/en/technology
+summary:
+  types: [oauth2, openIdConnect, apiKey, saml]
+  api_key_in: [header]
+  oauth2_flows: [authorizationCode, clientCredentials, refreshToken, tokenExchange]
+  pkce: [S256]
+  sso: [SAML 2.0, OIDC]
+schemes:
+- name: OAuth2
+  type: oauth2
+  issuer: https://matchory.com
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://discovery.matchory.com/auth/oauth/authorize
+    tokenUrl: https://discovery.matchory.com/auth/oauth/token
+    code_challenge_methods: [S256]
+  - flow: clientCredentials
+    tokenUrl: https://discovery.matchory.com/auth/oauth/token
+  token_endpoint_auth_methods: [client_secret_post, client_secret_basic, none]
+  grant_types: [authorization_code, refresh_token, client_credentials, 'urn:ietf:params:oauth:grant-type:token-exchange']
+  registration_endpoint: https://discovery.matchory.com/auth/oauth/register
+  revocation_endpoint: https://discovery.matchory.com/auth/oauth/revoke
+  userinfo_endpoint: https://discovery.matchory.com/auth/userinfo
+  jwks_uri: https://discovery.matchory.com/.well-known/jwks.json
+  id_token_signing_alg: [RS256]
+  source: well-known/matchory-openid-configuration.json
+- name: OpenIDConnect
+  type: openIdConnect
+  openIdConnectUrl: https://discovery.matchory.com/.well-known/openid-configuration
+  scopes: [openid, profile, email, mcp:use]
+  source: well-known/matchory-openid-configuration.json
+- name: APIKey
+  type: apiKey
+  in: header
+  description: >-
+    Role-scoped API keys for programmatic REST/GraphQL access, with role-based
+    access control and full audit trails (documented on the technology page).
+  source: https://matchory.com/en/technology
+- name: SSO
+  type: saml
+  description: >-
+    Enterprise single sign-on via SAML 2.0 and OIDC, with just-in-time
+    provisioning and role mapping.
+  source: https://matchory.com/en/technology
