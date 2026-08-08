@@ -66,7 +66,7 @@ apis:
   - Supplier Discovery
   - Supply Chain
   properties:
-  - type: MCP
+  - type: MCPServer
     url: https://matchory.com/en/mcp
 maintainers:
 - FN: Kin Lane
