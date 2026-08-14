@@ -35,7 +35,7 @@ accessModel:
   method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-20'
+modified: '2026-08-14'
 image: https://cdn.prod.website-files.com/6784f7971856e0304b40e3de/679028bece9dccdfc4e67c4e_favicon.svg
 tags:
 - Company
@@ -112,8 +112,44 @@ common:
   url: https://matchory.com/en/technology
 - type: LLMsTxt
   url: llms/matchory-llms.txt
+- type: Packages
+  url: packages/matchory-packages.yml
+- type: Plans
+  url: plans/matchory-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/matchory-rate-limits.yml
+- type: Lifecycle
+  url: lifecycle/matchory-lifecycle.yml
+- type: Conventions
+  url: conventions/matchory-conventions.yml
+- type: ContentSignal
+  url: well-known/matchory-robots.txt
+- type: Blog
+  url: https://matchory.com/en/newsroom
+- type: Support
+  url: https://matchory.com/en/contact-us
 x-enrichment:
-  date: '2026-07-20'
+  date: '2026-08-14'
   status: enriched
-  artifacts_added: 11
+  artifacts_added: 6
   pass: local-v1
+x-coverage:
+  state: gated
+  reason: customer-only-docs
+  detail: >-
+    Matchory markets a REST API, a GraphQL endpoint, webhooks and a first-party MCP
+    server on matchory.com/en/technology, but the developer reference and every
+    machine-readable contract live inside the authenticated discovery.matchory.com tenant
+    — MCP tools/list returns HTTP 401 invalid_token, no OpenAPI exists on any host, and
+    the advertised GraphQL endpoint has no publicly reachable location (POST /graphql
+    answers 405 from the SPA catch-all).
+  evidence:
+  - url: https://discovery.matchory.com/mcp
+    status: 401
+  - url: https://api.matchory.com/openapi.json
+    status: 404
+  - url: https://matchory.com/openapi.json
+    status: 404
+  - url: https://discovery.matchory.com/graphql
+    status: 405
+  checked: '2026-08-14'
