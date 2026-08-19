@@ -1,0 +1,33 @@
+generated: '2026-08-14'
+method: searched
+source: https://matchory.com/en/technology
+limit_count: 0
+published: false
+summary: >-
+  Matchory publishes no rate limits. The technology page describes the REST API, GraphQL
+  endpoint, bulk import/export, webhook events and role-scoped API keys, and the MCP page
+  describes agent access, but neither states a request quota, a window, a burst
+  allowance, or a throttling policy. No public developer reference exists to carry them
+  (see x-coverage in apis.yml). An honest zero, recorded rather than omitted.
+limits: []
+response_headers:
+  observed: []
+  note: >-
+    No RateLimit-*, X-RateLimit-*, or Retry-After header was observed on the only
+    anonymously reachable API surface, the MCP endpoint, which answers before any quota
+    accounting could apply. Headers actually returned by
+    POST https://discovery.matchory.com/mcp (HTTP 401, probed 2026-08-14) were:
+    www-authenticate, strict-transport-security, x-content-type-options, cache-control,
+    vary, alt-svc, matchory-release, x-powered-by, and Cloudflare's cf-ray /
+    cf-cache-status / nel / report-to. None of them signals a rate limit.
+exhaustion_status_code: null
+probes:
+- {url: 'https://discovery.matchory.com/mcp', method: POST, status: 401, note: 'OAuth-gated; no rate-limit headers returned'}
+- {url: 'https://matchory.com/en/technology', status: 200, note: 'REST/GraphQL/webhooks described; no limits stated'}
+- {url: 'https://matchory.com/en/mcp', status: 200, note: 'MCP integration described; no limits stated'}
+- {url: 'https://matchory.com/en/pricing', status: 200, note: 'Three tiers, no request quotas or call volumes'}
+remedy: >-
+  Publish the API's rate limits and the response headers that signal them
+  (RateLimit-Limit / RateLimit-Remaining / RateLimit-Reset per RFC 9331, or the
+  X-RateLimit-* family, plus Retry-After and the status code returned on exhaustion).
+  An agent grounded through MCP cannot back off correctly against an undocumented limit.

@@ -1,23 +1,117 @@
-generated: '2026-07-20'
+generated: '2026-08-14'
 method: searched
 source: https://discovery.matchory.com/.well-known/
 host: https://discovery.matchory.com
+hosts_probed: [matchory.com, discovery.matchory.com, api.matchory.com]
+summary: >-
+  discovery.matchory.com serves three real, anonymously readable discovery documents —
+  OIDC configuration, RFC 8414 authorization-server metadata, and RFC 9728
+  protected-resource metadata for the MCP endpoint — plus a JWKS. Everything else at
+  /.well-known/ on that host answers HTTP 200 with the application's single-page-app HTML
+  shell, which is NOT a document; those rows are recorded as misses. matchory.com 404s
+  every /.well-known/ path, and api.matchory.com (a live host) 404s every path probed.
 documents:
 - path: /.well-known/openid-configuration
+  host: discovery.matchory.com
   status: 200
   file: matchory-openid-configuration.json
+  real_document: true
   note: OpenID Connect discovery (issuer https://matchory.com)
 - path: /.well-known/oauth-authorization-server
+  host: discovery.matchory.com
   status: 200
   file: matchory-oauth-authorization-server.json
+  real_document: true
   note: RFC 8414 OAuth 2.0 Authorization Server Metadata
 - path: /.well-known/oauth-protected-resource
+  host: discovery.matchory.com
   status: 200
   file: matchory-oauth-protected-resource.json
+  real_document: true
   note: RFC 9728 OAuth 2.0 Protected Resource Metadata for the MCP server (scope mcp:use)
 - path: /.well-known/jwks.json
+  host: discovery.matchory.com
   status: 200
-  note: JSON Web Key Set (not saved verbatim)
+  real_document: true
+  note: JSON Web Key Set (not saved verbatim — rotating key material)
 - path: /.well-known/security.txt
-  status: 302
-  note: redirects to the SPA; no RFC 9116 security.txt published
+  host: discovery.matchory.com
+  status: 200
+  real_document: false
+  note: >-
+    SPA HTML shell, not an RFC 9116 document. (A 302 to the SPA was recorded on
+    2026-07-20; the catch-all now answers 200 with the same shell. Either way: no
+    security.txt is served.)
+- path: /.well-known/agent-card.json
+  host: discovery.matchory.com
+  status: 200
+  real_document: false
+  note: SPA HTML shell — no A2A agent card. Rejected as a false positive.
+- path: /.well-known/agent.json
+  host: discovery.matchory.com
+  status: 200
+  real_document: false
+  note: SPA HTML shell — no legacy A2A agent card. Rejected as a false positive.
+- path: /.well-known/api-catalog
+  host: discovery.matchory.com
+  status: 200
+  real_document: false
+  note: SPA HTML shell — no RFC 9727 API catalog.
+- path: /.well-known/ai-plugin.json
+  host: discovery.matchory.com
+  status: 200
+  real_document: false
+  note: SPA HTML shell — no plugin manifest.
+- path: /.well-known/mcp.json
+  host: discovery.matchory.com
+  status: 200
+  real_document: false
+  note: SPA HTML shell — no MCP discovery manifest.
+- path: /.well-known/security.txt
+  host: matchory.com
+  status: 404
+  real_document: false
+- path: /.well-known/agent-card.json
+  host: matchory.com
+  status: 404
+  real_document: false
+- path: /.well-known/agent.json
+  host: matchory.com
+  status: 404
+  real_document: false
+- path: /.well-known/api-catalog
+  host: matchory.com
+  status: 404
+  real_document: false
+- path: /.well-known/ai-plugin.json
+  host: matchory.com
+  status: 404
+  real_document: false
+- path: /.well-known/openid-configuration
+  host: api.matchory.com
+  status: 404
+  real_document: false
+- path: /.well-known/security.txt
+  host: api.matchory.com
+  status: 404
+  real_document: false
+- path: /.well-known/agent-card.json
+  host: api.matchory.com
+  status: 404
+  real_document: false
+other_discovery:
+- path: /robots.txt
+  host: matchory.com
+  status: 200
+  file: matchory-robots.txt
+  real_document: true
+  kind: content-signals
+  note: >-
+    Cloudflare-managed Content-Signal policy served verbatim:
+    "Content-Signal: search=yes,ai-train=no,use=reference" with Allow: / for the default
+    agent, and explicit Disallow: / for Amazonbot, Applebot-Extended, Bytespider, CCBot,
+    ClaudeBot, CloudflareBrowserRenderingCrawler, Google-Extended, GPTBot and
+    meta-externalagent. An express reservation of rights under Article 4 of EU Directive
+    2019/790. This is the provider's published consent signal for AI use.
+security_txt: false
+checked: '2026-08-14'

@@ -1,4 +1,4 @@
-generated: '2026-07-20'
+generated: '2026-08-14'
 method: searched
 source: https://matchory.com/en/technology
 standards:
@@ -41,3 +41,48 @@ standards:
 - id: soc2
   conforms: false
   evidence: No SOC 2 attestation published.
+- id: rfc6750-bearer-token
+  conforms: true
+  evidence: >-
+    POST https://discovery.matchory.com/mcp returns HTTP 401 with
+    'WWW-Authenticate: Bearer realm="mcp", error="invalid_token"' (probed 2026-08-14).
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: >-
+    /.well-known/security.txt is 404 on matchory.com and api.matchory.com, and answers the
+    SPA HTML shell on discovery.matchory.com. No security.txt is served.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: >-
+    No application/problem+json response was observed and no error reference is published.
+    The MCP surface uses the JSON-RPC 2.0 error object instead.
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: No deprecation or sunset policy is published; no Sunset header observed.
+- id: rfc9331-ratelimit-headers
+  conforms: false
+  evidence: No RateLimit-* or X-RateLimit-* headers observed; no limits published.
+- id: content-signals
+  conforms: true
+  evidence: >-
+    matchory.com/robots.txt publishes a Cloudflare-managed Content-Signal policy
+    (search=yes, ai-train=no, use=reference) as an express Article 4 (EU 2019/790)
+    reservation of rights, plus explicit Disallow for nine named AI crawlers.
+    Saved verbatim at well-known/matchory-robots.txt.
+- id: a2a
+  conforms: false
+  evidence: >-
+    No agent card at /.well-known/agent-card.json or /.well-known/agent.json on any of
+    matchory.com, discovery.matchory.com, api.matchory.com (probed 2026-08-14).
+- id: openapi
+  conforms: false
+  evidence: >-
+    No OpenAPI/Swagger document found on any host after full contract discovery
+    (2026-08-14) — see x-coverage in apis.yml.
+- id: graphql
+  conforms: false
+  evidence: >-
+    A "GraphQL endpoint" is advertised on matchory.com/en/technology, but no
+    introspectable endpoint is publicly reachable: POST to /graphql, /api/graphql and
+    /v1/graphql on discovery.matchory.com returns HTTP 405 Method Not Allowed (the SPA
+    catch-all is GET-only), and api.matchory.com/graphql returns 404. No SDL captured.

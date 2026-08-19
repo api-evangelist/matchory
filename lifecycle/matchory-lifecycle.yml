@@ -1,0 +1,59 @@
+generated: '2026-08-14'
+method: searched
+source: https://matchory.com/en/technology
+summary: >-
+  Matchory publishes no API lifecycle surface. There is no public versioning policy, no
+  deprecation or sunset policy, no changelog or release notes, no status page, and no
+  SLA or uptime commitment reachable without a tenant login. Every item below was probed
+  and is recorded as an absence, not omitted — and NO StatusPage or Deprecation pointer
+  is emitted in apis.yml, because emitting one would assert a surface the provider does
+  not serve.
+versioning:
+  scheme: unknown
+  current: null
+  docs: null
+  note: >-
+    No version segment is published for the REST/GraphQL API. The MCP endpoint is served
+    at https://discovery.matchory.com/mcp with no version in the path; the MCP protocol
+    version is negotiated per-session in `initialize` and is not publicly documented.
+    A build identifier IS returned on every response as the `matchory-release` header
+    (a git SHA, e.g. f339f1ba209cdee6f9b1c1fe3fbc903d4dfc11f5, observed 2026-08-14) —
+    that is a deploy marker, not a consumer-facing API version.
+deprecation:
+  policy_url: null
+  sunset_header: unknown
+  note: >-
+    No deprecation policy is published and RFC 8594 Sunset / Deprecation header support
+    could not be observed, because no anonymously callable operation exists to observe
+    it on.
+sla:
+  url: null
+  uptime_target: null
+  note: No SLA or uptime commitment is published on the pricing, technology, or MCP pages.
+status_page: null
+changelog: null
+support:
+  url: https://matchory.com/en/contact-us
+  email: sourcing@matchory.com
+  phone: "+49 (0) 89 / 319 0 126 0"
+  note: >-
+    Support is a contact form plus a customer-support ticket flow reachable from the
+    pricing page; there is no public help centre or community forum.
+company:
+  legal_name: Matchory GmbH
+  address: Ferdinand-Sauerbruch-Str. 3, 89134 Blaustein, Germany
+  register: Amtsgericht Ulm HRB 738197
+  vat_id: DE323407784
+  managing_directors: [Aiko Wiegand, Nils Liskien, Martin Konradi]
+  source: https://matchory.com/en/imprint
+deprecated_operations: []
+probes:
+- {url: 'https://status.matchory.com', status: 000, note: 'host does not resolve'}
+- {url: 'https://matchory.com/en/changelog', status: 404}
+- {url: 'https://matchory.com/en/roadmap', status: 404}
+- {url: 'https://matchory.com/en/docs', status: 404}
+- {url: 'https://matchory.com/en/developers', status: 404}
+- {url: 'https://docs.matchory.com', status: 000, note: 'host does not resolve'}
+- {url: 'https://developer.matchory.com', status: 000, note: 'host does not resolve'}
+- {url: 'https://matchory.com/en/imprint', status: 200}
+checked: '2026-08-14'

@@ -1,0 +1,115 @@
+generated: '2026-08-14'
+method: probed
+source: >-
+  live probes of https://discovery.matchory.com/mcp and
+  https://discovery.matchory.com/.well-known/*, plus https://matchory.com/en/technology
+summary: >-
+  Cross-cutting request/response semantics for the Matchory Discovery API, assembled from
+  what is actually observable. Matchory publishes no developer reference, so most
+  conventions below are recorded as `unknown` rather than guessed. What IS solid is the
+  authorization layer: a complete, anonymously readable OAuth 2.0 / OpenID Connect
+  discovery surface with PKCE, dynamic client registration, PAR, and token exchange, plus
+  an RFC 9728 protected-resource document for the MCP endpoint. NO Idempotency pointer is
+  emitted in apis.yml — no idempotency key, header, or retry-safety contract is published
+  anywhere, and asserting one would be a fabrication.
+authentication:
+  style: OAuth 2.0 bearer token (RFC 6750) for MCP; role-scoped API keys for REST/GraphQL
+  challenge_header: 'www-authenticate: Bearer realm="mcp", error="invalid_token"'
+  authorization_server: https://discovery.matchory.com
+  issuer: https://matchory.com
+  discovery:
+  - https://discovery.matchory.com/.well-known/openid-configuration
+  - https://discovery.matchory.com/.well-known/oauth-authorization-server
+  - https://discovery.matchory.com/.well-known/oauth-protected-resource
+  pkce: S256
+  dynamic_client_registration: https://discovery.matchory.com/auth/oauth/register
+  pushed_authorization_requests:
+    endpoint: https://discovery.matchory.com/auth/oauth/par
+    required: false
+  grant_types: [authorization_code, refresh_token, client_credentials, 'urn:ietf:params:oauth:grant-type:token-exchange']
+  api_keys:
+    documented: true
+    scoping: role-scoped, with role-based access control and full audit trail
+    header: unknown
+    source: https://matchory.com/en/technology
+  see: authentication/matchory-authentication.yml
+idempotency:
+  supported: unknown
+  header: null
+  note: >-
+    No idempotency key, no retry-safety statement, and no Idempotency-Key parameter is
+    published or observable. Deliberately NOT claimed.
+pagination:
+  style: unknown
+  params: []
+  response_fields: []
+  note: >-
+    Bulk import/export is advertised on the technology page but the paging contract for
+    the REST and GraphQL surfaces is not published.
+field_selection:
+  expansion: unknown
+  sparse_fields: unknown
+  note: >-
+    The data model is published as three separated layers — Global Index, Customer
+    Portfolio, Agent Enrichments — with a source URL, a confidence score, and a
+    verification tier (unverified, auto-confirmed, human-confirmed) attached to every
+    field. That is a documented response-shape convention even though the wire format is
+    not published.
+identity_convention:
+  key: MatchoryID
+  form: >-
+    UUID. Example published on matchory.com/en/mcp —
+    f47ac10b-58cc-4372-a567-0e02b2c3d479
+  semantics: >-
+    One immutable identity per supplier, stable across mergers, rebrands and relocations.
+    Every datapoint and every agent answer is traceable back to it.
+  source: https://matchory.com/en/technology
+request_tracing:
+  request_id_header: null
+  release_header: matchory-release
+  note: >-
+    Every response carries a `matchory-release` header containing the deployed git SHA
+    (observed 2026-08-14: f339f1ba209cdee6f9b1c1fe3fbc903d4dfc11f5). No per-request
+    correlation id header was observed.
+versioning:
+  scheme: unknown
+  see: lifecycle/matchory-lifecycle.yml
+error_envelope:
+  mcp:
+    format: JSON-RPC 2.0 error object
+    observed: '{"id":1,"error":{"code":-32603,"message":"Not authenticated"},"jsonrpc":"2.0"}'
+    http_status_on_auth_failure: 401
+    challenge: 'WWW-Authenticate: Bearer realm="mcp", error="invalid_token"'
+    note: >-
+      Probed 2026-08-14. Note the transport/protocol mismatch: the server returns HTTP
+      401 AND a JSON-RPC internal-error code (-32603) for what is an authentication
+      condition. No error catalogue is published, so no ErrorCatalog artifact or pointer
+      is emitted — two probe-observed errors are not a catalogue.
+  rest:
+    format: unknown
+    problem_json: unknown
+rate_limit_signaling:
+  headers: []
+  see: rate-limits/matchory-rate-limits.yml
+events:
+  webhooks: advertised (portfolio changes)
+  signing: unknown
+  see: asyncapi/matchory-webhooks.yml
+transport:
+  tls: TLSv1.3
+  hsts: 'max-age=31536000; includeSubDomains; preload'
+  http_versions: [h2, h3]
+  edge: Cloudflare
+  runtime: 'PHP/8.5.9 (x-powered-by, observed)'
+  see: security/matchory-domain-security.yml
+content_signals:
+  robots_policy: 'Content-Signal: search=yes, ai-train=no, use=reference'
+  ai_crawlers_disallowed: [Amazonbot, Applebot-Extended, Bytespider, CCBot, ClaudeBot, CloudflareBrowserRenderingCrawler, Google-Extended, GPTBot, meta-externalagent]
+  file: well-known/matchory-robots.txt
+  note: >-
+    Cloudflare-managed content signals served from matchory.com/robots.txt. Recorded as a
+    published consent signal, and worth stating plainly: Matchory markets itself as the
+    grounding layer for AI agents while its marketing site opts out of AI training and
+    disallows the major AI crawlers. Those are two different surfaces — the agent surface
+    is the authenticated MCP endpoint, not the website — but the policy is real and it is
+    what a crawler sees first.

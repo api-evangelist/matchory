@@ -1,0 +1,70 @@
+generated: '2026-08-14'
+method: searched
+source: https://matchory.com/en/pricing
+docs: https://matchory.com/en/pricing
+model: contact-sales
+currency: null
+plan_count: 3
+summary: >-
+  Matchory publishes a plans page with three named tiers but no prices, no currency, no
+  billing period, and no numeric quotas. Every tier carries the identical feature set —
+  the published differentiator is scope: "how many sourcing projects you run per year,
+  and how many suppliers you actively manage", expressed only as a category-count band.
+  Acquisition is via "Get in touch" / "Book a demo"; there is no self-serve checkout and
+  no published rate card. Recorded as a contact-sales model rather than omitted, because
+  the tier structure itself is real published data.
+plans:
+- name: Get started fast
+  audience: For focused teams
+  scope: Single category, single team
+  included_quota: 1–2 categories
+  price: null
+  currency: null
+  billing_period: null
+  overage: null
+  note: >-
+    "Get up and running on day one — the same product the largest customers use, sized
+    to a department." Price on application.
+- name: Most popular
+  audience: For procurement departments
+  scope: Cross-category coverage
+  included_quota: 5–10 categories
+  price: null
+  currency: null
+  billing_period: null
+  overage: null
+  note: >-
+    "Most procurement orgs land here — broader portfolio coverage, multiple teams
+    collaborating in one workspace." Price on application.
+- name: Custom scope
+  audience: For global procurement orgs
+  scope: Org-wide, cross-region
+  included_quota: 10+ categories
+  price: null
+  currency: null
+  billing_period: null
+  overage: null
+  note: >-
+    "Designed for organisations running sourcing as a coordinated, global function
+    across regions and business units." Price on application.
+included_in_every_plan:
+- Unlimited users & teams
+- Unlimited RFI
+- Supplier discovery & market overview
+- Supplier portfolio enrichment
+- Supplier consolidation
+- Centralized supplier workspace
+- All features on every plan
+- Verified capability data
+- Cross-industry collaboration
+scaling_dimensions:
+- sourcing projects run per year
+- suppliers actively managed
+api_pricing:
+  published: false
+  note: >-
+    No separate API, MCP, or per-call pricing is published. The pricing page does not
+    mention API calls, MCP seats, request volume, or data-export limits; API/MCP access
+    is presented as part of the platform, not as a metered product.
+evidence:
+- {url: 'https://matchory.com/en/pricing', status: 200, fetched: '2026-08-14'}

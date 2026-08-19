@@ -1,0 +1,158 @@
+generated: '2026-08-14'
+method: searched
+source: >-
+  https://packagist.org/packages/list.json?vendor=matchory,
+  https://registry.npmjs.org/-/v1/search?text=matchory,
+  https://api.github.com/orgs/matchory/repos
+summary: >-
+  Matchory GmbH publishes first-party open-source packages to Packagist (PHP/Laravel)
+  and npm, and runs an active public GitHub organisation (github.com/matchory, 38 public
+  repositories). IMPORTANT: none of these is a client library for the Matchory Discovery
+  API. They are general-purpose engineering libraries and internal tooling (a Laravel
+  Elasticsearch ORM, a response cache, a Server-Timing helper, an API documentation
+  generator, CI/CD GitHub Actions, Docker base images, Prometheus exporters, coding-style
+  presets). No first-party REST, GraphQL, or MCP SDK for the Matchory Discovery API is
+  published on any registry, and none is linked from matchory.com — so NO `SDKs` pointer
+  is emitted for this provider. Registries probed with no first-party API client found:
+  npm, Packagist, PyPI (404 for `matchory`), RubyGems (404), crates.io, Maven Central,
+  NuGet, pkg.go.dev.
+api_client_sdk_count: 0
+package_count: 10
+packages:
+- language: php
+  registry: packagist
+  name: matchory/elasticsearch
+  url: https://packagist.org/packages/matchory/elasticsearch
+  install: composer require matchory/elasticsearch
+  description: The missing Elasticsearch ORM for Laravel.
+  official: true
+  api_client: false
+  version: 3.0.0-beta.2
+  published: '2026-02-17'
+  repository: https://github.com/matchory/elasticsearch
+- language: php
+  registry: packagist
+  name: matchory/response-cache
+  url: https://packagist.org/packages/matchory/response-cache
+  install: composer require matchory/response-cache
+  description: A package to add automatic response caching to Laravel APIs.
+  official: true
+  api_client: false
+  version: 1.5.3
+  published: '2026-04-14'
+  repository: https://github.com/matchory/response-cache
+- language: php
+  registry: packagist
+  name: matchory/laravel-server-timing
+  url: https://packagist.org/packages/matchory/laravel-server-timing
+  install: composer require matchory/laravel-server-timing
+  description: Add Server-Timing header information from within your Laravel apps.
+  official: true
+  api_client: false
+  version: 1.3.4
+  published: '2026-04-14'
+  repository: https://github.com/matchory/laravel-server-timing
+- language: php
+  registry: packagist
+  name: matchory/coding-style
+  url: https://packagist.org/packages/matchory/coding-style
+  install: composer require --dev matchory/coding-style
+  description: >-
+    Shared code style configuration for Matchory projects (Pint, PHPStan, Rector).
+  official: true
+  api_client: false
+  version: v0.1.2
+  published: '2026-07-30'
+  repository: https://github.com/matchory/coding-style
+- language: php
+  registry: packagist
+  name: matchory/laravel-mailgun-templated-messages
+  url: https://packagist.org/packages/matchory/laravel-mailgun-templated-messages
+  install: composer require matchory/laravel-mailgun-templated-messages
+  description: A Laravel notification channel for Mailgun's templated messages.
+  official: true
+  api_client: false
+  version: 1.1.0
+  published: '2024-01-23'
+- language: php
+  registry: packagist
+  name: matchory/laravel-mailgun-templates-channel
+  url: https://packagist.org/packages/matchory/laravel-mailgun-templates-channel
+  install: composer require matchory/laravel-mailgun-templates-channel
+  description: >-
+    A Laravel notification channel for Mailgun's templated messages (predecessor name
+    of matchory/laravel-mailgun-templated-messages; same 1.1.0 release date).
+  official: true
+  api_client: false
+  version: 1.1.0
+  published: '2024-01-23'
+  repository: https://github.com/matchory/laravel-mailgun-templates-channel
+- language: php
+  registry: packagist
+  name: matchory/data-pipe
+  url: https://packagist.org/packages/matchory/data-pipe
+  install: composer require matchory/data-pipe
+  description: An opinionated framework for building data enrichment pipelines in PHP.
+  official: true
+  api_client: false
+  version: 0.1.0
+  published: '2021-09-23'
+  repository: https://github.com/matchory/data-pipe
+  note: >-
+    Last stable release 2021; the backing repository has not been pushed to since
+    2021-09-23. Dormant.
+- language: php
+  registry: packagist
+  name: matchory/herodot
+  url: https://packagist.org/packages/matchory/herodot
+  install: composer require --dev matchory/herodot
+  description: A versatile documentation generator for APIs built with Laravel.
+  official: true
+  api_client: false
+  version: null
+  published: null
+  repository: https://github.com/matchory/herodot
+  note: >-
+    Registered on Packagist but has NO tagged stable release (dev branches only), and
+    the repository has not been pushed to since 2021-02-17. Version recorded as null
+    because there is nothing published to read, not because it was not checked.
+- language: javascript
+  registry: npm
+  name: "@matchory/coding-style"
+  url: https://www.npmjs.com/package/@matchory/coding-style
+  install: npm install --save-dev @matchory/coding-style
+  description: >-
+    Shared code style configuration for Matchory projects (oxlint, oxfmt, ESLint and
+    TypeScript presets).
+  official: true
+  api_client: false
+  version: 0.1.2
+  published: '2026-07-30'
+  repository: https://github.com/matchory/coding-style
+- language: javascript
+  registry: npm
+  name: "@matchory/hetzner-cloud-prometheus-sd"
+  url: https://www.npmjs.com/package/@matchory/hetzner-cloud-prometheus-sd
+  install: npm install @matchory/hetzner-cloud-prometheus-sd
+  description: >-
+    A web server exposing Hetzner Cloud instances for consumption by the Prometheus
+    HTTP service discovery.
+  official: true
+  api_client: false
+  version: 1.0.1
+  published: '2022-12-07'
+  repository: https://github.com/matchory/hetzner-cloud-prometheus-sd
+registries_probed:
+- {registry: packagist, query: 'vendor=matchory', result: 8 packages}
+- {registry: npm, query: 'text=matchory', result: 2 packages}
+- {registry: pypi, query: 'matchory', result: 'HTTP 404 — no package'}
+- {registry: rubygems, query: 'matchory', result: 'HTTP 404 — no gem'}
+- {registry: crates.io, query: 'matchory', result: 'HTTP 403 to unauthenticated probe; no crate linked from docs'}
+notes:
+- >-
+  The Matchory Discovery API is documented on matchory.com/en/technology as REST +
+  GraphQL + webhooks with role-scoped API keys, but no client library for it is
+  published anywhere public.
+- >-
+  matchory/herodot is Matchory's own OpenAPI documentation generator for Laravel APIs.
+  Matchory ships the tool but does not publish an OpenAPI for its own API.
