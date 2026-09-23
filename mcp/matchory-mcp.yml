@@ -23,7 +23,7 @@ verification:
   endpoint_probe: POST https://discovery.matchory.com/mcp -> 401 (auth required)
   probed: '2026-08-14'
   probes:
-  - method: 'tools/list'
+  - method: tools/list
     status: 401
     body: '{"id":1,"error":{"code":-32603,"message":"Not authenticated"},"jsonrpc":"2.0"}'
     challenge: 'WWW-Authenticate: Bearer realm="mcp", error="invalid_token"'
@@ -33,26 +33,21 @@ verification:
     challenge: 'WWW-Authenticate: Bearer realm="mcp", error="invalid_token"'
     date: '2026-08-14'
 tools: []
-tools_note: >-
-  The tool list could not be enumerated because the MCP endpoint requires an OAuth access
-  token (scope mcp:use). tools/list was re-probed on 2026-08-14 and still returns HTTP 401
-  with error -32603 "Not authenticated". Matchory does not publish a tool list anywhere
-  else either — /llms.txt is absent on matchory.com (404) and answers the SPA shell on
-  discovery.matchory.com, and there is no listing in the public MCP registry
-  (registry.modelcontextprotocol.io search "matchory" -> 0 servers, probed 2026-08-14).
-  Nothing is fabricated: the real tool names and inputSchemas require authenticated
-  introspection with a tenant token.
-clients_documented: [Microsoft Copilot, Claude, any MCP-compatible agent]
+tools_note: 'The tool list could not be enumerated because the MCP endpoint requires an OAuth access token
+  (scope mcp:use). tools/list was re-probed on 2026-08-14 and still returns HTTP 401 with error -32603
+  "Not authenticated". Matchory does not publish a tool list anywhere else either — /llms.txt is absent
+  on matchory.com (404) and answers the SPA shell on discovery.matchory.com, and there is no listing in
+  the public MCP registry (registry.modelcontextprotocol.io search "matchory" -> 0 servers, probed 2026-08-14).
+  Nothing is fabricated: the real tool names and inputSchemas require authenticated introspection with
+  a tenant token.'
+clients_documented:
+- Microsoft Copilot
+- Claude
+- any MCP-compatible agent
 deployment:
   mode: remote
   endpoint: https://discovery.matchory.com/mcp
-  install: null
-  package: null
-  auth: oauth
   verified: probed
   probe: gated
-  checked: '2026-08-14'
-  source: >-
-    Probed directly this pass. Remote-only: Matchory ships a hosted HTTPS MCP endpoint an
-    MCP client POSTs to. No npx/stdio package is published on npm or PyPI, and no local
-    install command appears in the provider's documentation.
+  checked: '2026-08-12'
+  source: catalog MCP census
