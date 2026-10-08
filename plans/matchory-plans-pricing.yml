@@ -68,3 +68,27 @@ api_pricing:
     is presented as part of the platform, not as a metered product.
 evidence:
 - {url: 'https://matchory.com/en/pricing', status: 200, fetched: '2026-08-14'}
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models: []
+  units: []
+  plans:
+  - name: Get started fast
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
+  - name: Most popular
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
+  - name: Custom scope
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
